@@ -15,9 +15,19 @@
         text-align: center;
     }
 
-    h1 {
-        margin-bottom: 20px;
-        color: #e8e3a0; /* lighter soft gold */
+    /* Updated headers to match game-card border color */
+    h1, h2 {
+        color: #d4b300; /* dark gold (same as card border) */
+    }
+
+    /* Modern clean separator line */
+    .separator {
+        width: 90%;
+        height: 3px;
+        background: #5a5a5a; /* modern dark gray */
+        border-radius: 3px;
+        margin: 50px auto;
+        opacity: 0.7;
     }
 
     .game-grid {
@@ -30,14 +40,14 @@
 
     .game-card {
         position: relative;
-        background: #123d18; /* soft mid-green */
+        background: #123d18; 
         padding: 16px;
         border-radius: 14px;
         width: 100%;
         max-width: 400px;
 
-        border: 3px solid #d4b300; /* DARK GOLD */
-        box-shadow: 0 0 18px rgba(212, 179, 0, 0.15); /* modern gold glow */
+        border: 3px solid #d4b300; /* dark gold */
+        box-shadow: 0 0 18px rgba(212, 179, 0, 0.15);
     }
 
     iframe.game-frame {
@@ -75,24 +85,19 @@
         padding: 10px 16px;
         border-radius: 10px;
         border: none;
-        background: #d4b300; /* DARK GOLD */
-        color: #123d18; /* deep green */
+        background: #d4b300;
+        color: #123d18;
         cursor: pointer;
         font-weight: bold;
         transition: 0.2s;
     }
 
     .fullscreen-button:hover {
-        background: #e0c233; /* GOLD HOVER */
+        background: #e0c233;
     }
 
     iframe {
         border-radius: 10px;
-    }
-
-    h2 {
-        margin-top: 60px;
-        color: #e8e3a0; /* soft gold */
     }
 
     @media (max-width: 1000px) {
@@ -109,30 +114,31 @@
             height: 300px;
         }
     }
+
+    /* Search box styling */
     .search-box {
-    width: 60%;
-    max-width: 400px;
-    padding: 12px 14px;
+        width: 60%;
+        max-width: 400px;
+        padding: 12px 14px;
 
-    background: #123d18; /* your soft mid green */
-    color: #e8e3a0; /* soft gold text */
-    border: 2px solid #c5a500; /* darker modern gold */
-    border-radius: 10px;
+        background: #123d18;
+        color: #e8e3a0;
+        border: 2px solid #c5a500;
+        border-radius: 10px;
 
-    font-size: 16px;
-    outline: none;
-    margin-top: 10px;
-    box-shadow: 0 0 10px rgba(197, 165, 0, 0.25);
-    transition: 0.2s;
+        font-size: 16px;
+        outline: none;
+        margin-top: 10px;
+        box-shadow: 0 0 10px rgba(197, 165, 0, 0.25);
+        transition: 0.2s;
     }
     .search-box::placeholder {
-    color: #bca84d;
+        color: #bca84d;
     }
     .search-box:focus {
-    border-color: #e0c233;
-    box-shadow: 0 0 15px rgba(224, 194, 51, 0.4);
+        border-color: #e0c233;
+        box-shadow: 0 0 15px rgba(224, 194, 51, 0.4);
     }
-    
 </style>
 </head>
 
@@ -140,7 +146,6 @@
 
 <h1>Game Library</h1>
 
-<!-- SEARCH BAR -->
 <input 
     type="text" 
     id="searchBar" 
@@ -148,6 +153,7 @@
     onkeyup="searchGames()"
     class="search-box">
 
+<div class="separator"></div>
 
 <div class="game-grid">
 
@@ -265,6 +271,8 @@
 
 </div>
 
+<div class="separator"></div>
+
 <h2>Any requests for games to add?</h2>
 
 <iframe src="https://forms.gle/krxNEueW7HhYcz2T6?embedded=true" width="40%" height="250" frameborder="0"></iframe>
@@ -288,7 +296,7 @@ function fullscreenFrame(frameId) {
 }
 </script>
 
-    <script>
+<script>
 function searchGames() {
     const input = document.getElementById("searchBar").value.toLowerCase();
     const cards = document.getElementsByClassName("game-card");
