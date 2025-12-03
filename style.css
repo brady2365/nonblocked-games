@@ -8,6 +8,11 @@
 
 html, body { height: 100%; margin: 0; padding: 0 20px 40px; font-family: Arial, sans-serif; color: var(--soft); background: var(--bg); -webkit-font-smoothing: antialiased; text-align: center; }
 
+body {
+    position: relative; /* makes sticky navbar behave better */
+    z-index: 0;
+}
+
 .navbar {
     width: 100%;
     background: var(--card-bg);
@@ -20,6 +25,7 @@ html, body { height: 100%; margin: 0; padding: 0 20px 40px; font-family: Arial, 
     top: 0;
     z-index: 9999;
     box-shadow: 0 0 15px rgba(212,179,0,0.12);
+    position: sticky;
 }
 
 .navbar .logo { color: var(--gold); font-size: 20px; font-weight: 700; letter-spacing: .4px; }
