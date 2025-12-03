@@ -14,18 +14,19 @@
       --muted: #5a5a5a;
     }
 
-    /* Base */
     html, body {
       height: 100%;
+      margin: 0;
+      padding: 0;
     }
 
     body {
       background: var(--bg);
       color: var(--soft);
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0 20px 40px;
       -webkit-font-smoothing: antialiased;
+      padding-top: 80px; /* space for fixed navbar */
+      box-sizing: border-box;
     }
 
     /* NAVBAR */
@@ -37,14 +38,13 @@
       display: flex;
       gap: 20px;
       align-items: center;
-      position: fixed; /* changed from sticky */
+      position: fixed; /* navbar stays fixed */
       top: 0;
       left: 0;
       right: 0;
       z-index: 9999;
       box-shadow: 0 0 15px rgba(212,179,0,0.12);
     }
-
 
     .navbar .logo {
       color: var(--gold);
@@ -94,21 +94,17 @@
       text-shadow: 0 0 8px rgba(212,179,0,0.25);
     }
 
+    /* Page headings */
     .page-head {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* centers h1 horizontally */
-  gap: 20px;
-  padding: 70px 0 10px; /* top padding avoids navbar overlap */
-}
+      text-align: center;
+      padding: 20px 0;
+    }
 
-.page-head h1 {
-  text-align: center; /* center h1 text */
-  color: var(--gold);
-  margin: 0;
-  font-size: 28px;
-}
-
+    .page-head h1 {
+      color: var(--gold);
+      margin: 0;
+      font-size: 28px;
+    }
 
     .separator {
       width: 90%;
@@ -119,7 +115,6 @@
       opacity: 0.7;
     }
 
-    /* Categories placeholder */
     .categories {
       display: flex;
       justify-content: center;
@@ -144,13 +139,12 @@
       color: var(--gold);
     }
 
-    /* Grid + cards */
     .game-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       justify-items: center;
-      margin: 20px 0;
+      margin: 20px auto;
       padding: 0 6px;
       width: 100%;
       box-sizing: border-box;
@@ -196,7 +190,7 @@
       right: 16px;
       bottom: 16px;
       background: rgba(0, 0, 0, 0.7);
-      color: #ffffff;
+      color: #fff;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -255,11 +249,11 @@
       }
     }
 
-    /* request form iframe responsiveness */
     .request-wrap {
       display: flex;
       justify-content: center;
       margin-top: 18px;
+      margin-bottom: 40px;
     }
 
     .request-wrap iframe {
@@ -287,7 +281,7 @@
   </div>
 
   <!-- Page head -->
-  <div class="page-head" style="padding-top:12px;">
+  <div class="page-head">
     <h1 id="games">Game Library</h1>
   </div>
 
@@ -308,9 +302,7 @@
     <iframe src="https://forms.gle/krxNEueW7HhYcz2T6?embedded=true" width="40%" height="250" frameborder="0"></iframe>
   </div>
 
-  <!-- SCRIPTS: games array + generator + functions -->
   <script>
-    // ---------- GAMES ----------
     const games = [
       { title: "Retro Bowl", id: "game1", url: "https://class1811.github.io/g5/class-400/" },
       { title: "Slope", id: "game2", url: "https://class1811.github.io/g5/class-450/" },
@@ -345,7 +337,6 @@
       { title: "Youtube", id: "game31", url: "https://613tube.com/" }
     ];
 
-    // ---------- GENERATE CARDS ----------
     const container = document.getElementById('gameContainer');
 
     function createCardHTML(g) {
@@ -367,15 +358,12 @@
 
     games.forEach(g => container.insertAdjacentHTML('beforeend', createCardHTML(g)));
 
-    // ---------- FUNCTIONS ----------
     function loadGame(frameId, url, overlayEl) {
       const iframe = document.getElementById(frameId);
       if(!iframe) return;
       iframe.src = url;
-
-      if(overlayEl){
-        overlayEl.style.display = 'none';
-      } else {
+      if(overlayEl){ overlayEl.style.display = 'none'; } 
+      else {
         const overlay = iframe.parentElement.querySelector('.overlay');
         if(overlay) overlay.style.display = 'none';
       }
@@ -389,9 +377,7 @@
         else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
         else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
         else alert("Fullscreen not supported 😿");
-      } catch(e){
-        console.warn("Fullscreen failed", e);
-      }
+      } catch(e){ console.warn("Fullscreen failed", e); }
     }
 
     function searchGames() {
