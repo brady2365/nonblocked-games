@@ -38,12 +38,13 @@
       display: flex;
       gap: 20px;
       align-items: center;
-      position: fixed; /* navbar stays fixed */
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 9999;
       box-shadow: 0 0 15px rgba(212,179,0,0.12);
+      flex-wrap: wrap; /* wrap on small screens */
     }
 
     .navbar .logo {
@@ -58,6 +59,7 @@
       flex: 1;
       display: flex;
       justify-content: center;
+      min-width: 180px;
     }
 
     .nav-search input {
@@ -81,12 +83,14 @@
       display: flex;
       gap: 12px;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
       color: var(--soft);
       text-decoration: none;
       font-size: 15px;
+      white-space: nowrap; /* don’t break text */
     }
 
     .nav-links a:hover {
@@ -247,13 +251,17 @@
         display: flex;
         justify-content: center;
       }
+      .nav-links {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     .request-wrap {
       display: flex;
       justify-content: center;
       margin-top: 18px;
-      margin-bottom: 40px;
+      margin-bottom: 60px; /* extra space under form */
     }
 
     .request-wrap iframe {
@@ -288,9 +296,7 @@
   <div class="separator"></div>
 
   <!-- category area -->
-  <div class="categories" aria-hidden="true">
-    <!-- buttons left here for future category filtering -->
-  </div>
+  <div class="categories" aria-hidden="true"></div>
 
   <!-- GAME GRID -->
   <div id="gameContainer" class="game-grid"></div>
