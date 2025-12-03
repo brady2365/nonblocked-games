@@ -1,374 +1,303 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Classroom - Home</title>
-  <link rel="icon" href="https://www.gstatic.com/classroom/favicon.png">
+<meta charset="utf-8">
+<title>Classroom - Home</title>
+<link rel="icon" href="https://www.gstatic.com/classroom/favicon.png">
+<style>
+:root {
+  --bg: #0d1b0f;
+  --card-bg: #123d18;
+  --gold: #d4b300;
+  --soft: #e8e3a0;
+  --muted: #5a5a5a;
+}
 
-  <style>
-    :root {
-      --bg: #0d1b0f;
-      --card-bg: #123d18;
-      --gold: #d4b300;
-      --soft: #e8e3a0;
-      --muted: #5a5a5a;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--soft);
+  -webkit-font-smoothing: antialiased;
+}
 
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      background: var(--bg);
-      color: var(--soft);
-    }
+body {
+  padding-top: 70px; /* space for fixed navbar */
+}
 
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--card-bg);
-      border-bottom: 3px solid var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-      z-index: 999;
-      box-shadow: 0 0 15px rgba(212,179,0,0.12);
-      flex-wrap: wrap;
-    }
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg);
+  border-bottom: 3px solid var(--gold);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  z-index: 999;
+  box-shadow: 0 0 15px rgba(212,179,0,0.12);
+}
 
-    .navbar .logo {
-      color: var(--gold);
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-    }
+.logo {
+  color: var(--gold);
+  font-size: 20px;
+  font-weight: 700;
+}
 
-    .nav-search {
-      margin-left: 8px;
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      min-width: 120px;
-    }
+.nav-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 120px;
+}
 
-    .nav-search input {
-      padding: 8px 12px;
-      width: 380px;
-      max-width: 100%;
-      border-radius: 10px;
-      outline: none;
-      border: 2px solid var(--gold);
-      background-color: #0f3114;
-      color: var(--soft);
-      font-size: 15px;
-    }
+.nav-search input {
+  padding: 8px 12px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid var(--gold);
+  background-color: #0f3114;
+  color: var(--soft);
+}
 
-    .nav-search input::placeholder {
-      color: var(--gold);
-      opacity: 0.9;
-    }
+.nav-search input::placeholder {
+  color: var(--gold);
+  opacity: 0.9;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-start; /* moved left so Request fits */
-      min-width: 100px;
-    }
+.nav-links {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0; /* prevents shrinking */
+}
 
-    .nav-links a {
-      color: var(--soft);
-      text-decoration: none;
-      font-size: 15px;
-    }
+.nav-links a {
+  color: var(--soft);
+  text-decoration: none;
+  font-size: 15px;
+}
 
-    .nav-links a:hover {
-      color: #fff;
-      text-shadow: 0 0 8px rgba(212,179,0,0.25);
-    }
+.nav-links a:hover {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(212,179,0,0.25);
+}
 
-    /* Page headings */
-    .page-head {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 80px 0 10px; /* add top padding to avoid navbar overlap */
-      text-align: center;
-      flex-direction: column;
-    }
+/* HEADINGS */
+.page-head {
+  text-align: center;
+  margin: 20px 0 10px;
+}
 
-    h1, h2 {
-      color: var(--gold);
-      margin: 0;
-    }
+h1, h2 {
+  color: var(--gold);
+  margin: 0 0 10px;
+}
 
-    h1 {
-      font-size: 28px;
-    }
+.separator {
+  width: 90%;
+  height: 3px;
+  background: var(--muted);
+  border-radius: 3px;
+  margin: 20px auto;
+  opacity: 0.7;
+}
 
-    .separator {
-      width: 90%;
-      height: 3px;
-      background: var(--muted);
-      border-radius: 3px;
-      margin: 20px auto;
-      opacity: 0.7;
-    }
+/* GAME GRID */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  justify-items: center;
+  margin: 20px 0;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
 
-    .categories {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 12px;
-      flex-wrap: wrap;
-    }
+.game-card {
+  position: relative;
+  background: var(--card-bg);
+  padding: 14px;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 420px;
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 18px rgba(212,179,0,0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s;
+}
 
-    .cat-btn {
-      padding: 8px 14px;
-      background: transparent;
-      color: var(--soft);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 13px;
-    }
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
 
-    .cat-btn.active {
-      background: rgba(212,179,0,0.12);
-      border-color: var(--gold);
-      color: var(--gold);
-    }
+.game-card h3 {
+  margin: 0 0 8px;
+  text-align: center;
+  color: var(--gold);
+}
 
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      justify-items: center;
-      margin: 20px 0;
-      padding: 0 6px;
-      width: 100%;
-      box-sizing: border-box;
-    }
+iframe.game-frame {
+  width: 100%;
+  height: 350px;
+  border: none;
+  border-radius: 10px;
+  display: block;
+  background: #000;
+}
 
-    .game-card {
-      position: relative;
-      background: var(--card-bg);
-      padding: 14px;
-      border-radius: 14px;
-      width: 100%;
-      max-width: 420px;
-      border: 3px solid var(--gold);
-      box-shadow: 0 0 18px rgba(212,179,0,0.12);
-      transition: transform 0.15s ease, box-shadow 0.15s;
-    }
+.overlay {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.18s;
+}
 
-    .game-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-    }
+.overlay:hover {
+  background: rgba(0,0,0,0.55);
+}
 
-    .game-card h3 {
-      margin: 0 0 8px;
-      color: var(--gold);
-      font-size: 18px;
-      text-align: center;
-    }
+.fullscreen-button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  background: var(--gold);
+  color: var(--card-bg);
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+}
 
-    iframe.game-frame {
-      width: 100%;
-      height: 350px;
-      border: none;
-      border-radius: 10px;
-      display: block;
-      background: #000;
-    }
+.fullscreen-button:hover {
+  background: #e0c233;
+}
 
-    .overlay {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-      background: rgba(0, 0, 0, 0.7);
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 2;
-      transition: background 0.18s;
-    }
+/* GOOGLE FORM */
+.request-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 60px 0; /* extra space below */
+}
 
-    .overlay:hover {
-      background: rgba(0,0,0,0.55);
-    }
+.request-wrap iframe {
+  width: 40%;
+  max-width: 560px;
+  min-width: 260px;
+  border-radius: 8px;
+}
 
-    .fullscreen-button {
-      margin-top: 10px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      border: none;
-      background: var(--gold);
-      color: var(--card-bg);
-      cursor: pointer;
-      font-weight: bold;
-      width: 100%;
-    }
+@media (max-width: 1000px) {
+  .game-grid { grid-template-columns: repeat(2,1fr); }
+  .nav-search input { max-width: 200px; }
+}
 
-    .fullscreen-button:hover {
-      background: #e0c233;
-    }
-
-    /* Google Form spacing */
-    .request-wrap {
-      display: flex;
-      justify-content: center;
-      margin: 18px 0 60px 0; /* extra space at bottom */
-    }
-
-    .request-wrap iframe {
-      width: 40%;
-      max-width: 560px;
-      min-width: 260px;
-      border-radius: 8px;
-    }
-
-    @media (max-width: 1000px) {
-      .game-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .nav-search input {
-        width: 240px;
-      }
-    }
-
-    @media (max-width: 650px) {
-      .game-grid {
-        grid-template-columns: 1fr;
-      }
-      iframe.game-frame {
-        height: 300px;
-      }
-      .navbar {
-        padding: 10px;
-        gap: 10px;
-      }
-      .nav-search {
-        order: 3;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 450px) {
-      .nav-links a {
-        font-size: 13px;
-      }
-      .nav-search input {
-        width: 120px;
-      }
-    }
-  </style>
+@media (max-width: 650px) {
+  .game-grid { grid-template-columns: 1fr; }
+  iframe.game-frame { height: 300px; }
+  .nav-search { order: 3; width: 100%; justify-content: center; margin: 5px 0; }
+  .nav-links { justify-content: flex-start; gap: 8px; }
+}
+</style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="logo">Classroom Hub</div>
-    <div class="nav-search">
-      <input type="text" id="searchInput" placeholder="Search games..." oninput="searchGames()">
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">Classroom Hub</div>
+  <div class="nav-search">
+    <input type="text" id="searchInput" placeholder="Search games..." oninput="searchGames()">
+  </div>
+  <div class="nav-links">
+    <a href="#games">Games</a>
+    <a href="#request">Request</a>
+  </div>
+</div>
+
+<!-- Page Head -->
+<div class="page-head">
+  <h1 id="games">Game Library</h1>
+</div>
+<div class="separator"></div>
+
+<!-- Game Grid -->
+<div id="gameContainer" class="game-grid"></div>
+
+<div class="separator"></div>
+
+<h2 id="request" style="text-align:center; margin-top:40px;">Any requests for games to add?</h2>
+<div class="request-wrap">
+  <iframe src="https://forms.gle/krxNEueW7HhYcz2T6?embedded=true" width="40%" height="250" frameborder="0"></iframe>
+</div>
+
+<script>
+const games = [
+  { title: "Retro Bowl", id: "game1", url: "https://class1811.github.io/g5/class-400/" },
+  { title: "Slope", id: "game2", url: "https://class1811.github.io/g5/class-450/" }
+];
+
+const container = document.getElementById('gameContainer');
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function createCardHTML(g) {
+  return `
+    <div class="game-card" data-title="${escapeHtml(g.title)}">
+      <h3>${escapeHtml(g.title)}</h3>
+      <iframe id="${g.id}" class="game-frame" allowfullscreen></iframe>
+      <div class="overlay" onclick="loadGame('${g.id}','${g.url}', this)">Play</div>
+      <button class="fullscreen-button" onclick="fullscreenFrame('${g.id}')">Fullscreen</button>
     </div>
-    <div class="nav-links">
-      <a href="#games">Games</a>
-      <a href="#request">Request</a>
-    </div>
-  </div>
+  `;
+}
 
-  <!-- Page head -->
-  <div class="page-head">
-    <h1 id="games">Game Library</h1>
-  </div>
+games.forEach(g => container.insertAdjacentHTML('beforeend', createCardHTML(g)));
 
-  <div class="separator"></div>
+function loadGame(frameId, url, overlayEl) {
+  const iframe = document.getElementById(frameId);
+  if(!iframe) return;
+  iframe.src = url;
+  if(overlayEl) overlayEl.style.display = 'none';
+}
 
-  <!-- category area -->
-  <div class="categories" aria-hidden="true"></div>
+function fullscreenFrame(frameId) {
+  const iframe = document.getElementById(frameId);
+  if(!iframe) return;
+  try { iframe.requestFullscreen?.() || iframe.webkitRequestFullscreen?.() || iframe.msRequestFullscreen?.(); }
+  catch(e){ console.warn("Fullscreen failed", e); }
+}
 
-  <!-- GAME GRID -->
-  <div id="gameContainer" class="game-grid"></div>
+function searchGames() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  document.querySelectorAll('.game-card').forEach(card => {
+    const title = card.getAttribute('data-title').toLowerCase();
+    card.style.display = title.includes(q) ? 'block' : 'none';
+  });
+}
 
-  <div class="separator"></div>
-
-  <h2 id="request" style="text-align:center; margin-top:40px;">Any requests for games to add?</h2>
-  <div class="request-wrap">
-    <iframe src="https://forms.gle/krxNEueW7HhYcz2T6?embedded=true" width="40%" height="250" frameborder="0"></iframe>
-  </div>
-
-  <script>
-    const games = [
-      { title: "Retro Bowl", id: "game1", url: "https://class1811.github.io/g5/class-400/" },
-      { title: "Slope", id: "game2", url: "https://class1811.github.io/g5/class-450/" },
-      { title: "Stickman Hook Game", id: "game3", url: "https://class1811.github.io/g5/class-406/" },
-      { title: "Cookie Clicker", id: "game4", url: "https://class1811.github.io/g5/class-448/" }
-      // add the rest of your games here
-    ];
-
-    const container = document.getElementById('gameContainer');
-
-    function escapeHtml(str) {
-      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
-
-    function createCardHTML(g) {
-      return `
-        <div class="game-card" data-title="${escapeHtml(g.title)}">
-          <h3>${escapeHtml(g.title)}</h3>
-          <iframe id="${g.id}" class="game-frame" allowfullscreen></iframe>
-          <div class="overlay" role="button" aria-label="Play ${escapeHtml(g.title)}" onclick="loadGame('${g.id}','${g.url}', this)">
-            Play
-          </div>
-          <button class="fullscreen-button" onclick="fullscreenFrame('${g.id}')">Fullscreen</button>
-        </div>
-      `;
-    }
-
-    games.forEach(g => container.insertAdjacentHTML('beforeend', createCardHTML(g)));
-
-    function loadGame(frameId, url, overlayEl) {
-      const iframe = document.getElementById(frameId);
-      if(!iframe) return;
-      iframe.src = url;
-      if(overlayEl) overlayEl.style.display = 'none';
-    }
-
-    function fullscreenFrame(frameId) {
-      const iframe = document.getElementById(frameId);
-      if(!iframe) return;
-      try { iframe.requestFullscreen?.() || iframe.webkitRequestFullscreen?.() || iframe.msRequestFullscreen?.(); }
-      catch(e){ console.warn("Fullscreen failed", e); }
-    }
-
-    function searchGames() {
-      const q = document.getElementById('searchInput').value.trim().toLowerCase();
-      document.querySelectorAll('.game-card').forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        card.style.display = title.includes(q) ? 'block' : 'none';
-      });
-    }
-
-    document.getElementById('searchInput').addEventListener('keydown', function(e){
-      if(e.key === 'Escape'){ this.value=''; searchGames(); }
-    });
-  </script>
+document.getElementById('searchInput').addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ this.value=''; searchGames(); }
+});
+</script>
 
 </body>
 </html>
