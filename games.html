@@ -37,11 +37,14 @@
       display: flex;
       gap: 20px;
       align-items: center;
-      position: sticky;
+      position: fixed; /* changed from sticky */
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 9999;
       box-shadow: 0 0 15px rgba(212,179,0,0.12);
     }
+
 
     .navbar .logo {
       color: var(--gold);
@@ -91,23 +94,21 @@
       text-shadow: 0 0 8px rgba(212,179,0,0.25);
     }
 
-    /* Page headings */
     .page-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 20px 0 10px;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centers h1 horizontally */
+  gap: 20px;
+  padding: 70px 0 10px; /* top padding avoids navbar overlap */
+}
 
-    h1, h2 {
-      color: var(--gold);
-      margin: 0;
-    }
+.page-head h1 {
+  text-align: center; /* center h1 text */
+  color: var(--gold);
+  margin: 0;
+  font-size: 28px;
+}
 
-    h1 {
-      font-size: 28px;
-    }
 
     .separator {
       width: 90%;
