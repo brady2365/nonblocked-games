@@ -18,6 +18,7 @@
       height: 100%;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
@@ -25,8 +26,7 @@
       color: var(--soft);
       font-family: Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
-      padding-top: 100px; /* enough space for navbar */
-      box-sizing: border-box;
+      padding-top: 100px; /* space for navbar */
     }
 
     /* NAVBAR */
@@ -58,6 +58,7 @@
       display: flex;
       justify-content: center;
       margin: 6px 0;
+      min-width: 150px;
     }
 
     .nav-search input {
@@ -82,6 +83,7 @@
       gap: 12px;
       flex-wrap: wrap;
       justify-content: center;
+      min-width: 100px;
     }
 
     .nav-links a {
@@ -106,6 +108,7 @@
       color: var(--gold);
       font-size: 28px;
       margin: 0;
+      word-break: break-word; /* ensure it wraps */
     }
 
     .separator {
@@ -228,7 +231,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
       .nav-search input {
-        width: 200px;
+        width: 220px;
       }
     }
 
@@ -248,7 +251,7 @@
       display: flex;
       justify-content: center;
       margin-top: 18px;
-      margin-bottom: 80px; /* extra space at bottom */
+      margin-bottom: 40px; /* extra space under form */
     }
 
     .request-wrap iframe {
@@ -380,7 +383,6 @@
     document.getElementById('searchInput').addEventListener('keydown', function(e){
       if(e.key === 'Escape'){ this.value=''; searchGames(); }
     });
-
   </script>
 
 </body>
