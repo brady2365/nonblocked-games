@@ -1,221 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Classroom - Home</title>
 <link rel="icon" href="https://www.gstatic.com/classroom/favicon.png">
-
-<style>
-  :root{
-    --bg: #0d1b0f;
-    --card-bg: #123d18;
-    --gold: #d4b300;
-    --soft: #e8e3a0;
-    --muted: #5a5a5a;
-  }
-
-  /* Base */
-  html,body{height:100%}
-  body {
-    background: var(--bg);
-    color: var(--soft);
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0 20px 40px;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  /* NAVBAR */
-  .navbar {
-      width: 100%;
-      background: var(--card-bg);
-      border-bottom: 3px solid var(--gold);
-      padding: 12px 20px;
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 9999;
-      box-shadow: 0 0 15px rgba(212,179,0,0.12);
-    }
-
-  .navbar .logo {
-      color: var(--gold);
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: .4px;
-  }
-
-  .nav-search {
-    margin-left: 8px;
-    flex: 1;
-    display:flex;
-    justify-content:center;
-  }
-
-  .nav-search input {
-    padding: 8px 12px;
-    width: 380px;
-    max-width: 100%;
-    border-radius: 10px;
-    outline: none;
-    border: 2px solid var(--gold);
-    background-color: #0f3114;
-    color: var(--soft);
-    font-size: 15px;
-  }
-
-  .nav-search input::placeholder { color: var(--gold); opacity:.9; }
-
-  .nav-links {
-    display:flex;
-    gap:12px;
-    align-items:center;
-  }
-
-  .nav-links a {
-    color: var(--soft);
-    text-decoration:none;
-    font-size: 15px;
-  }
-
-  .nav-links a:hover { color: #fff; text-shadow: 0 0 8px rgba(212,179,0,0.25); }
-
-  /* Page headings */
-  .page-head {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    padding: 20px 0 10px;
-  }
-
-  h1, h2 { color: var(--gold); margin: 0; }
-  h1 { font-size: 28px; }
-
-  .separator {
-    width: 90%;
-    height: 3px;
-    background: var(--muted);
-    border-radius: 3px;
-    margin: 20px auto;
-    opacity: 0.7;
-  }
-
-  /* Categories placeholder (you can expand later) */
-  .categories {
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin-top:12px;
-    flex-wrap:wrap;
-  }
-
-  .cat-btn {
-    padding:8px 14px;
-    background: transparent;
-    color: var(--soft);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
-    cursor:pointer;
-    font-size:13px;
-  }
-
-  .cat-btn.active {
-    background: rgba(212,179,0,0.12);
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-
-  /* Grid + cards */
-  .game-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      justify-items: center;
-      margin: 20px 0;
-      padding: 0 6px;
-      width: 100%;
-      box-sizing: border-box;
-  }
-
-  .game-card {
-      position: relative;
-      background: var(--card-bg);
-      padding: 14px;
-      border-radius: 14px;
-      width: 100%;
-      max-width: 420px;
-      border: 3px solid var(--gold);
-      box-shadow: 0 0 18px rgba(212,179,0,0.12);
-      transition: transform .15s ease, box-shadow .15s;
-    }
-
-  .game-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.45); }
-
-  .game-card h3 { margin: 0 0 8px; color: var(--gold); font-size: 18px; text-align:center; }
-
-  iframe.game-frame {
-      width: 100%;
-      height: 350px;
-      border: none;
-      border-radius: 10px;
-      display: block;
-      background: #000;
-  }
-
-  .overlay {
-      position: absolute;
-      top: 16px;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-      background: rgba(0, 0, 0, 0.7);
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 2;
-      transition: background .18s;
-  }
-
-  .overlay:hover { background: rgba(0,0,0,0.55); }
-
-  .fullscreen-button {
-      margin-top: 10px;
-      padding: 10px 16px;
-      border-radius: 10px;
-      border: none;
-      background: var(--gold);
-      color: var(--card-bg);
-      cursor: pointer;
-      font-weight: bold;
-      width: 100%;
-  }
-
-  .fullscreen-button:hover { background: #e0c233; }
-
-  @media (max-width: 1000px) {
-    .game-grid { grid-template-columns: repeat(2, 1fr); }
-    .nav-search input { width: 240px; }
-  }
-
-  @media (max-width: 650px) {
-    .game-grid { grid-template-columns: 1fr; }
-    iframe.game-frame { height: 300px; }
-    .navbar { padding:10px; gap:10px; }
-    .nav-search { order: 3; width:100%; display:flex; justify-content:center; }
-  }
-
-  /* request form iframe responsiveness */
-  .request-wrap { display:flex; justify-content:center; margin-top: 18px; }
-  .request-wrap iframe { width: 40%; max-width: 560px; min-width: 260px; border-radius:8px; }
-
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -235,18 +24,16 @@
   </div>
 
   <!-- Page head -->
-  <div class="page-head" style="padding-top:12px;">
+  <div class="page-head">
     <h1 id="games">Game Library</h1>
   </div>
 
   <div class="separator"></div>
 
-  <!-- category area (keeps layout neat; optional) -->
-  <div class="categories" aria-hidden="true">
-    <!-- buttons left here for future category filtering -->
-  </div>
+  <!-- category area -->
+  <div class="categories" aria-hidden="true"></div>
 
-  <!-- GAME GRID (auto-generated) -->
+  <!-- GAME GRID -->
   <div id="gameContainer" class="game-grid"></div>
 
   <div class="separator"></div>
@@ -256,9 +43,8 @@
     <iframe src="https://forms.gle/krxNEueW7HhYcz2T6?embedded=true" width="40%" height="250" frameborder="0"></iframe>
   </div>
 
-  <!-- SCRIPTS: games array + generator + functions -->
+  <!-- SCRIPTS -->
   <script>
-    // ---------- GAMES: exact names + URLs from your original file ----------
     const games = [
       { title: "Retro Bowl", id: "game1", url: "https://class1811.github.io/g5/class-400/" },
       { title: "Slope", id: "game2", url: "https://class1811.github.io/g5/class-450/" },
@@ -293,74 +79,42 @@
       { title: "Youtube", id: "game31", url: "https://613tube.com/" }
     ];
 
-    // ---------- GENERATE CARDS ----------
     const container = document.getElementById('gameContainer');
 
     function createCardHTML(g){
       return `
-        <div class="game-card" data-title="${escapeHtml(g.title)}">
-            <h3>${escapeHtml(g.title)}</h3>
+        <div class="game-card" data-title="${g.title}">
+            <h3>${g.title}</h3>
             <iframe id="${g.id}" class="game-frame" allowfullscreen></iframe>
-
-            <div class="overlay" role="button" aria-label="Play ${escapeHtml(g.title)}" onclick="loadGame('${g.id}','${g.url}', this)">
-                Play
-            </div>
-
+            <div class="overlay" onclick="loadGame('${g.id}','${g.url}', this)">Play</div>
             <button class="fullscreen-button" onclick="fullscreenFrame('${g.id}')">Fullscreen</button>
         </div>
       `;
     }
 
-    // helper to avoid breaking titles (just in case)
-    function escapeHtml(str){
-      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
-
-    // Actually render
     games.forEach(g => container.insertAdjacentHTML('beforeend', createCardHTML(g)));
 
-    // ---------- FUNCTIONS: load, fullscreen, search ----------
-    function loadGame(frameId, url, overlayEl) {
+    function loadGame(frameId, url, overlayEl){
       const iframe = document.getElementById(frameId);
-      if(!iframe) return;
       iframe.src = url;
-
-      // hide overlay (use provided overlay element or find it)
-      if(overlayEl){
-        overlayEl.style.display = 'none';
-      } else {
-        const overlay = iframe.parentElement.querySelector('.overlay');
-        if(overlay) overlay.style.display = 'none';
-      }
+      if(overlayEl) overlayEl.style.display = 'none';
     }
 
-    function fullscreenFrame(frameId) {
+    function fullscreenFrame(frameId){
       const iframe = document.getElementById(frameId);
-      if(!iframe) return;
-      try {
-        if (iframe.requestFullscreen) iframe.requestFullscreen();
-        else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
-        else if (iframe.msRequestFullscreen) iframe.msRequestFullscreen();
-        else alert("Fullscreen not supported 😿");
-      } catch(e){
-        console.warn("Fullscreen failed", e);
-      }
+      if(iframe.requestFullscreen) iframe.requestFullscreen();
+      else if(iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
+      else if(iframe.msRequestFullscreen) iframe.msRequestFullscreen();
+      else alert("Fullscreen not supported 😿");
     }
 
     function searchGames(){
-      const q = document.getElementById('searchInput').value.trim().toLowerCase();
-      document.querySelectorAll('.game-card').forEach(card => {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      document.querySelectorAll('.game-card').forEach(card=>{
         const title = card.getAttribute('data-title').toLowerCase();
-        card.style.display = title.includes(q) ? 'block' : 'none';
+        card.style.display = title.includes(q)?'block':'none';
       });
     }
-
-    // optional: support pressing Enter to search (nice UX)
-    document.getElementById('searchInput').addEventListener('keydown', function(e){
-      if(e.key === 'Escape'){ this.value=''; searchGames(); }
-    });
-
   </script>
-
 </body>
 </html>
