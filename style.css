@@ -10,7 +10,14 @@ html, body { height: 100%; margin: 0; padding: 0 20px 40px; font-family: Arial, 
 
 body {
     position: relative; /* makes sticky navbar behave better */
+    padding-top: 80px; /* navbar is ~70px, add extra for spacing */
     z-index: 0;
+}
+
+.request-wrap iframe {
+    max-width: 560px;
+    min-width: 260px;
+    width: 40%;
 }
 
 .navbar {
